@@ -14,7 +14,6 @@ _______________________
   - download and install python (https://www.python.org/downloads/).
   - download and install virtual box (https://www.virtualbox.org/wiki/Downloads).
   - download and install vagrant (https://www.vagrantup.com/downloads.html).
-  - download the data from here https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip .
   - go to directory of the file using git bash.
   - run vagrant up.
   - run vagrant ssh.
