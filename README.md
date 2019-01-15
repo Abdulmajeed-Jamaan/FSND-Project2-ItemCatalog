@@ -9,17 +9,11 @@ _______________________
    - Item.
    - Category.
 
- the questions on this database are :
-   - What are the most popular three articles of all time?.
-   - Who are the most popular article authors of all time?.
-   - On which days did more than 1% of requests lead to errors?.
-
 _______________________
 ## Prerequisites
   - download and install python (https://www.python.org/downloads/).
   - download and install virtual box (https://www.virtualbox.org/wiki/Downloads).
   - download and install vagrant (https://www.vagrantup.com/downloads.html).
-  - download the data from here https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip .
   - go to directory of the file using git bash.
   - run vagrant up.
   - run vagrant ssh.
@@ -49,7 +43,7 @@ _______________________
 
 _______________________
 
-## JSON Links
+## JSON Endpoint Links
 - for all categories with their items : /catalog/JSON
-- for all items in the category : /catalog/<string:category_title>/items/JSON
-- for specific item in category : /catalog/<string:category_title>/<string:item_title>/JSON
+- for all items in the category : /catalog/(string:category_title)/items/JSON
+- for specific item in category : /catalog/(string:category_title)/(string:item_title)/JSON
