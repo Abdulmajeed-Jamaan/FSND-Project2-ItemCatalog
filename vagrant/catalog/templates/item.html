@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+
+
+<div class="w3-content w3-container w3-padding-64" id="about">
+
+
+  <div class="w3-row">
+    <div class="w3-col w3-center w3-padding-large">
+      <h1><b><i class="  w3-margin-right"></i>{{Item.title}}</b></h1><br>
+      <h2>{{Item.description}}</h2>
+      {% if USER != null%}
+       {% if Item.user_id == USER.id %}
+      <a href = "{{url_for('editItem',category_title=Item.category.title,item_title=Item.title)}}" class="w3-blue"> Edit  </a><a>||</a>
+      <a href = "{{url_for('deleteItem',category_title=Item.category.title,item_title=Item.title)}}"class="w3-red">  delete </a>
+       {% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

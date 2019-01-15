@@ -1,0 +1,32 @@
+<!-- Navbar (sit on top) -->
+
+<div class="w3-top">
+  <div class="w3-bar w3-grey" id="myNavbar">
+    <a class="w3-bar-item  w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="{{url_for('showCatalog')}}" class=" w3-light-blue w3-bar-item w3-button w3-large">Catalog</a>
+
+    {% if USER != null%}
+    <div class="w3-bar-item w3-right">
+      <img src="{{USER.picture}}" style="width:35px">
+      <b>{{USER.name}}</b>
+    </div>
+          <a href="{{url_for('gdisconnect')}}" class=" w3-light-blue w3-bar-item w3-button w3-large w3-right">logout </a>
+      {% else %}
+      <div id="result"></div>
+      <div id="signinButton" class=" w3-right w3-center ">
+      <span class="g-signin"
+        data-scope="openid email"
+        data-clientid="548331235172-cdjpl5non15up0bnvbn45ggv9mo1e3lf.apps.googleusercontent.com"
+        data-redirecturi="postmessage"
+        data-accesstype="offline"
+        data-cookiepolicy="single_host_origin"
+        data-callback="signInCallback"
+        data-approvalprompt="force">
+      </span>
+    </div>
+
+      {% endif %}
+
+  </div>

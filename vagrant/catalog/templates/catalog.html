@@ -1,0 +1,64 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+
+
+
+<!-- Container (About Section) -->
+<div class="w3-content w3-container w3-padding-64" id="about">
+  {% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+    <li> <strong> {{ message }} </strong> </li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+
+
+  <div class="w3-row w3-light-grey">
+    <div class="w3-col m6 w3-center w3-padding-large">
+      <h1><b>Categories</b></h1>
+      {% for category in categories %}
+        <a href = "{{url_for('showCategory',category_title=category.title)}}">
+
+          <p>{{category.title}}</p>
+
+        </a>
+      {% endfor %}
+
+    </div>
+
+        <div class="w3-col m6 w3-center w3-padding-large">
+          {% if USER != null%}
+
+          <a href = "{{url_for('newItem')}}">
+          <h1 class="w3-orange"><b> Add new Item !!</b></h1>
+          </a>
+          {% endif %}
+
+      <h1><b>{{message}}</b></h1>
+      {% for item in items %}
+        <a href = "{{url_for('showItem',category_title=item.category.title,item_title=item.title)}}">
+          <p>{{item.title}}</p>
+        </a>
+        {% if USER != null%}
+         {% if item.user_id == USER.id %}
+        <a href = "{{url_for('editItem',category_title=item.category.title,item_title=item.title)}}" class="w3-blue"> Edit  </a><a>||</a>
+        <a href = "{{url_for('deleteItem',category_title=item.category.title,item_title=item.title)}}"class="w3-red">  delete </a>
+         {% endif %}
+        {% endif %}
+
+      {% endfor %}
+    </div>
+
+
+  </div>
+
+</div>
+
+{% endblock %}
