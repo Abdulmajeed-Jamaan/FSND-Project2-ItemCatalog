@@ -14,10 +14,10 @@
 			<form action="{{url_for('editItem',category_title=category.title,item_title=Item.title)}}" method = "post">
 				<div class="form-group">
 					<label for="name">title:</label>
-					<input type ="text" maxlength="50" class="form-control" name="title" placeholder="title of the item" value="{{Item.title}}">
+					<input type ="text" maxlength="50" class="form-control" name="title" placeholder="title of the item" value="{{Item.title}}" required>
 					<br> <br>
 					<label for="description">Description:</label>
-					<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Description of the item">{{Item.description}}</textarea>
+					<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Description of the item" required>{{Item.description}}</textarea>
 
 					{% for category in categories %}
 					<div class="radio">

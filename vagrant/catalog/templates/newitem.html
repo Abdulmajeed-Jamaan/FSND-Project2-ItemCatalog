@@ -14,15 +14,15 @@
 			<form action="{{url_for('newItem')}}" method = "post">
 				<div class="form-group">
 					<label for="name">title:</label>
-					<input type ="text" maxlength="50" class="form-control" name="title"placeholder="title of the item">
+					<input type ="text" maxlength="50" class="form-control" name="title"placeholder="title of the item" required>
 					<br> <br>
 					<label for="description">Description:</label>
-					<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Description of the item"></textarea>
+					<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Description of the item" required></textarea>
 
 					{% for category in categories %}
 					<div class="radio">
 						<label>
-							<input type="radio" name="category" id="{{category.id}}" value="{{category.id}}">{{category.title}}
+							<input type="radio" name="category" id="{{category.id}}" value="{{category.id}} " checked>{{category.title}}
 						</label>
 					</div>
 					{% endfor %}

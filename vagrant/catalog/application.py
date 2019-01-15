@@ -1,9 +1,17 @@
 #!/usr/bin/env python
-from flask import Flask, render_template
-from flask import request, redirect, jsonify, url_for, flash
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    jsonify,
+    url_for,
+    flash
+)
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Category, Item, User
+from sqlalchemy.orm.exc import NoResultFound
 
 from flask import session as login_session
 import random
@@ -156,7 +164,7 @@ def getUserID(email):
     try:
         user = session.query(User).filter_by(email=email).one()
         return user.id
-    except:
+    except NoResultFound:
         return False
 
 
@@ -330,6 +338,7 @@ def newItem():
 def editItem(category_title, item_title):
     if 'email' not in login_session:
         return redirect('/catalog')
+
     categories = session.query(Category).all()
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
@@ -337,6 +346,11 @@ def editItem(category_title, item_title):
 
     editedItem = session.query(Item).filter_by(title=item_title).one()
     category = session.query(Category).filter_by(title=category_title).one()
+
+    if getUserID(login_session['email']) != editItem.user_id:
+        flash('You are not Authorized user to edit this item')
+        return redirect('/catalog')
+
     if request.method == 'POST':
         if request.form['title']:
             editedItem.title = request.form['title']
@@ -368,6 +382,10 @@ def deleteItem(category_title, item_title):
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
     login_session['state'] = state
+
+    if getUserID(login_session['email']) != itemToDelete.user_id:
+        flash('You are not Authorized user to delete this item')
+        return redirect('/catalog')
 
     if request.method == 'POST':
         session.delete(itemToDelete)
