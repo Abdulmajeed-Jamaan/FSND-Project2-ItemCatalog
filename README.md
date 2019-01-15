@@ -45,5 +45,5 @@ _______________________
 
 ## JSON Links
 - for all categories with their items : /catalog/JSON
-- for all items in the category : /catalog/<string:category_title>/items/JSON
-- for specific item in category : /catalog/<string:category_title>/<string:item_title>/JSON
+- for all items in the category : /catalog/(string:category_title)/items/JSON
+- for specific item in category : /catalog/(string:category_title)/<string:item_title>/JSON
